@@ -16,10 +16,7 @@
 
 package com.turnerendlesslearning.audiobook;
 
-/**
- *
- * @author turnermic
- */
+
 public interface RipDoneListener {
     public void ripDone(RipDoneEvent event);
 }

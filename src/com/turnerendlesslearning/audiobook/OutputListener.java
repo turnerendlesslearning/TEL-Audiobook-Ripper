@@ -16,10 +16,7 @@
 
 package com.turnerendlesslearning.audiobook;
 
-/**
- *
- * @author turnermic
- */
+
 public interface OutputListener {
     public void outputReceived(OutputEvent event);
 }

@@ -25,10 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.SwingWorker;
 
-/**
- *
- * @author turnermic
- */
+
 public class RipSwingWorker extends SwingWorker {
 
     public String outputText = "";
@@ -145,7 +142,7 @@ public class RipSwingWorker extends SwingWorker {
         }
         catch (IOException e) {
             System.out.println("exception happened - here's what I know: ");
-            e.printStackTrace();
+            System.out.println(e.getStackTrace());
             System.exit(-1);
         }
 

@@ -18,10 +18,6 @@ package com.turnerendlesslearning.audiobook;
 
 import java.util.EventObject;
 
-/**
- *
- * @author turnermic
- */
 public class OutputEvent extends EventObject {
     private String _data;
     public OutputEvent(Object source, String data) {

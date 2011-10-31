@@ -24,10 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
-/**
- *
- * @author turnermic
- */
 public class MainForm extends javax.swing.JFrame {
 
 
@@ -41,15 +37,15 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
 
         String oldAuthor = prefs.get("AUTHOR", "");
-        if(!oldAuthor.equals(null)) {
+        if(oldAuthor != null) {
             this.authorTextField.setText(oldAuthor);
         }
         String oldBook = prefs.get("BOOK", "");
-        if(!oldBook.equals(null)) {
+        if(oldBook != null) {
             this.bookTextField.setText(oldBook);
         }
         String oldDisc = prefs.get("DISC", "");
-        if(!oldDisc.equals(null)) {
+        if(oldDisc != null) {
             try {
                 int oldDiscNum = Integer.parseInt(oldDisc);
                 oldDiscNum++;
@@ -189,7 +185,9 @@ public class MainForm extends javax.swing.JFrame {
         startTime = new java.util.Date();
 
         //RIP TO WAV
-        String homeDir = "/home/turnermic/Music";
+        String homeDir = System.getProperty("user.home" ) + 
+                "/Music";
+                
         final String bookName = this.bookTextField.getText().trim();
         final String author = this.authorTextField.getText().trim();
         startButton.setEnabled(false);
@@ -220,6 +218,7 @@ public class MainForm extends javax.swing.JFrame {
         
         rsw.addOutputListener(new OutputListener() {
 
+            @Override
             public void outputReceived(OutputEvent event) {
                 textArea.append(event.getData() +"\n");
                 textArea.setCaretPosition(textArea.getText().length());
@@ -228,6 +227,7 @@ public class MainForm extends javax.swing.JFrame {
         });
         rsw.addRipDoneListener(new RipDoneListener() {
 
+            @Override
             public void ripDone(RipDoneEvent event) {
             	//EJECT DISC
                 try {
@@ -255,7 +255,7 @@ public class MainForm extends javax.swing.JFrame {
                 for(int i = 0; i < f.length; i++) {
                     
                     String filename = outDir + "/" + f[i];
-                    String withoutExtension = filename.substring(0, filename.length() - 4);
+                    //String withoutExtension = filename.substring(0, filename.length() - 4);
                     String ext = filename.substring(filename.length() - 4);
                     if(!ext.toLowerCase().equals(".wav")) {
                         continue;
@@ -342,6 +342,7 @@ public class MainForm extends javax.swing.JFrame {
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainForm().setVisible(true);
             }
